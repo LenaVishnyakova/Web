@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+    <div class="mn-page">
+        <div class="header">
+            <h1>Для входа в личный кабинет</h1>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}"><button>Войти</button></a>
+            {% else %}
+                <a href="{% url 'login' %}"><button>Войти</button></a>
+            {% endif %}
+            <p>Ещё не зарегистрированы? <a href="{% url 'register' %}">Тык</a></p>
+        </div>
+    </div>
+{% endblock %}

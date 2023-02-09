@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<div class="login-pg">
+        <h1>Вход</h1>
+
+    {% if form.errors %}
+        <p>{{ form.errors.error }}</p>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn-style btn-subm-login">ОК</button>
+    </form>
+</div>
+{% endblock %}

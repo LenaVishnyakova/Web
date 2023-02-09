@@ -1,0 +1,58 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<div class="profile-pg">
+    <aside>
+        <div class="profile-actions">
+            <a href="{% url 'logout' %}"><button>Выйти из профиля</button></a>
+        </div>
+    </aside>
+    <div class="notes-area">
+        <div class="notes-form">
+            <div class="notes-form-content">
+
+                <div class="notes-header">
+                    <h3>Новая заметка</h3>
+                </div>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="notes-inputs">
+                        <input type="text" placeholder="Название" name="header">
+                        <textarea placeholder="Текст заметки..." name="note_text" rows="3"></textarea>
+                    </div>
+                    <div class="notes-btn">
+                        <button type="submit">Добавить</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="notes-output">
+            <ul>
+                {% for el in notes_all %}
+                <li>
+                    <div class="notes-out-content">
+                        <div class="notes-out-header">
+                            <h4>{{ el.header }}</h4>
+                        </div>
+                        <div class="notes-out-text">
+                            <p>{{ el.note_text }}</p>
+                        </div>
+                        <div class="notes-out-data">
+                            {{ el.data }}
+                        </div>
+                    </div>
+                    <div class="notes-conf">
+                        <button name="del-note">-</button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
